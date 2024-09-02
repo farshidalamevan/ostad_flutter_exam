@@ -1,7 +1,6 @@
 /// Module 12 Assignment on Responsive Design
 
 import 'package:flutter/material.dart';
-
 import 'homeScreen.dart';
 
 void main() {
