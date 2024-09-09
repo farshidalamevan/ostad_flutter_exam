@@ -1,19 +1,19 @@
-/// Module 12 Assignment on Responsive Design
+/// Module 13 Assignment
 
 import 'package:flutter/material.dart';
 import 'homeScreen.dart';
 
 void main() {
-  runApp(Module12Assignment());
+  runApp(const Module13Assignment());
 }
 
-class Module12Assignment extends StatelessWidget {
-  const Module12Assignment({super.key});
+class Module13Assignment extends StatelessWidget {
+  const Module13Assignment({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Module 12 Assignment',
+    return const MaterialApp(
+      title: 'Module 13 Assignment',
       debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );

@@ -1,209 +1,441 @@
 import 'package:flutter/material.dart';
-import 'package:ostad_flutter_exm/content.dart';
-import 'package:ostad_flutter_exm/responsiveBuilder.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _pulloverCounter = 1;
+  int _tshirtCounter = 1;
+  int _sportDressCounter = 1;
+
+  int _pulloverPrice = 51;
+  int _tshirtPrice = 30;
+  int _sportDressPrice = 43;
+
+  mySnackBar(message) {
+    return ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Responsivebuilder(
-      mobile: Scaffold(
-        appBar: AppBar(
-          title: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'HUMMING\nBIRD.',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-          ),
+    int _totalPulloverPrice = _pulloverCounter * _pulloverPrice;
+    int _totalTshirtPrice = _tshirtCounter * _tshirtPrice;
+    int _totalSportDressPrice = _sportDressCounter * _sportDressPrice;
+
+    int _getTotalBiil =
+        _totalSportDressPrice + _totalTshirtPrice + _totalPulloverPrice;
+
+    return Scaffold(
+      backgroundColor: Colors.grey.shade300,
+      appBar: AppBar(
+        title: const Text(
+          'My Bag',
+          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
         ),
-        drawer: Drawer(
-          child: Column(
-            children: [
-              SafeArea(
-                child: Container(
-                  width: double.infinity,
-                  height: 250,
-                  decoration: BoxDecoration(color: Colors.green.shade400),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'SKILL UP NOW',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text('TAP HERE',
-                          style: TextStyle(
-                            color: Colors.white,
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Icon(
-                    Icons.live_tv_rounded,
-                    color: Colors.black,
-                  ),
-                ),
-                title: Text('Episodes'),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              ListTile(
-                leading: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Icon(
-                    Icons.info_sharp,
-                    color: Colors.black,
-                  ),
-                ),
-                title: Text('About'),
-              ),
-            ],
-          ),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              content(),
-              SizedBox(
-                height: 50,
-                width: 200,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    ' Join course ',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  style: ButtonStyle(
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
-                    backgroundColor: WidgetStatePropertyAll(Colors.green),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+        // titleTextStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
       ),
-      tablet: Scaffold(
-        appBar: AppBar(
-          title: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'HUMMING\nBIRD.',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(25),
-                  child: Row(
-                    children: [
-                      Text('Episodes'),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('About'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              content(),
-              SizedBox(
-                height: 50,
-                width: 200,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    ' Join course ',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  style: ButtonStyle(
-                    foregroundColor: WidgetStatePropertyAll(Colors.white),
-                    backgroundColor: WidgetStatePropertyAll(Colors.green),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-      desktop: Scaffold(
-        appBar: AppBar(
-          title: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'HUMMING\nBIRD.',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(25),
-                  child: Row(
-                    children: [
-                      Text('Episodes'),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text('About'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
           children: [
-            content(),
-            SizedBox(
-              height: 50,
-              width: 200,
-              child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  ' Join course ',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                style: ButtonStyle(
-                  foregroundColor: WidgetStatePropertyAll(Colors.white),
-                  backgroundColor: WidgetStatePropertyAll(Colors.green),
-                ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.white),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Image.asset('assets/image/pullover.jpg',
+                        width: 120, height: 120),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Title(
+                                color: Colors.black,
+                                child: const Text(
+                                  'Pullover',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                            const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Icon(Icons.more_vert),
+                            ),
+                          ],
+                        ),
+                        const Row(
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                text: 'Color: ',
+                                style: TextStyle(color: Colors.grey),
+                                children: [
+                                  TextSpan(
+                                    text: 'Black',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            Text.rich(
+                              TextSpan(
+                                text: 'Size: ',
+                                style: TextStyle(color: Colors.grey),
+                                children: [
+                                  TextSpan(
+                                    text: 'L',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                _pulloverCounter--;
+                                setState(() {});
+                              },
+                              icon: const Icon(
+                                Icons.remove,
+                              ),
+                              style: IconButton.styleFrom(
+                                  backgroundColor: Colors.grey.shade200,
+                                  foregroundColor: Colors.black54),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              '$_pulloverCounter',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                _pulloverCounter++;
+                                setState(() {});
+                              },
+                              icon: const Icon(Icons.add),
+                              style: IconButton.styleFrom(
+                                  backgroundColor: Colors.grey.shade200,
+                                  foregroundColor: Colors.black54),
+                            ),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Text(
+                                '$_totalPulloverPrice\$',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.white),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Image.asset('assets/image/tshirt.jpg',
+                        width: 120, height: 120),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Title(
+                                color: Colors.black,
+                                child: const Text(
+                                  'T-Shirt',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                            const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Icon(Icons.more_vert),
+                            ),
+                          ],
+                        ),
+                        const Row(
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                text: 'Color: ',
+                                style: TextStyle(color: Colors.grey),
+                                children: [
+                                  TextSpan(
+                                    text: 'Grey',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            Text.rich(
+                              TextSpan(
+                                text: 'Size: ',
+                                style: TextStyle(color: Colors.grey),
+                                children: [
+                                  TextSpan(
+                                    text: 'L',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                _tshirtCounter--;
+                                setState(() {});
+                              },
+                              icon: const Icon(
+                                Icons.remove,
+                              ),
+                              style: IconButton.styleFrom(
+                                  backgroundColor: Colors.grey.shade200,
+                                  foregroundColor: Colors.black54),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              '$_tshirtCounter',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                _tshirtCounter++;
+                                setState(() {});
+                              },
+                              icon: const Icon(Icons.add),
+                              style: IconButton.styleFrom(
+                                  backgroundColor: Colors.grey.shade200,
+                                  foregroundColor: Colors.black54),
+                            ),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Text(
+                                '$_totalTshirtPrice\$ ',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.white),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Image.asset('assets/image/sportdress.jpg',
+                        width: 120, height: 120),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Title(
+                                color: Colors.black,
+                                child: const Text(
+                                  'Sport Dress',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                            const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Icon(Icons.more_vert),
+                            ),
+                          ],
+                        ),
+                        const Row(
+                          children: [
+                            Text.rich(
+                              TextSpan(
+                                text: 'Color: ',
+                                style: TextStyle(color: Colors.grey),
+                                children: [
+                                  TextSpan(
+                                    text: 'Black',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            Text.rich(
+                              TextSpan(
+                                text: 'Size: ',
+                                style: TextStyle(color: Colors.grey),
+                                children: [
+                                  TextSpan(
+                                    text: 'M',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                _sportDressCounter--;
+                                setState(() {});
+                              },
+                              icon: const Icon(
+                                Icons.remove,
+                              ),
+                              style: IconButton.styleFrom(
+                                  backgroundColor: Colors.grey.shade200,
+                                  foregroundColor: Colors.black54),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              '$_sportDressCounter',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                _sportDressCounter++;
+                                setState(() {});
+                              },
+                              icon: const Icon(Icons.add),
+                              style: IconButton.styleFrom(
+                                  backgroundColor: Colors.grey.shade200,
+                                  foregroundColor: Colors.black54),
+                            ),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Text(
+                                '$_totalSportDressPrice\$ ',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Total amount:',
+                        style: TextStyle(
+                            color: Colors.grey, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '$_getTotalBiil\$',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width,
+                  height: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        mySnackBar(
+                            'Congratulations! Thanks for shopping with us..');
+                      },
+                      style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(Colors.red.shade500),
+                        foregroundColor:
+                            const WidgetStatePropertyAll(Colors.white),
+                      ),
+                      child: const Text('CHECK OUT'),
+                    ),
+                  ),
+                )
+              ],
             )
           ],
         ),
@@ -211,5 +443,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-
