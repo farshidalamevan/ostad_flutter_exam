@@ -1,21 +1,9 @@
-/// Module 13 Assignment
+/// Module 14 Assignment
+/// CRUD app UI with API Integration
 
 import 'package:flutter/material.dart';
-import 'homeScreen.dart';
+import 'app.dart';
 
 void main() {
-  runApp(const Module13Assignment());
-}
-
-class Module13Assignment extends StatelessWidget {
-  const Module13Assignment({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Module 13 Assignment',
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
-    );
-  }
+  runApp(const Module14Assignment());
 }
