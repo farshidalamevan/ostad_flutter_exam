@@ -116,7 +116,7 @@ class _UpdateProductState extends State<UpdateProduct> {
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(requestBody));
 
-    print(response.statusCode);
+    // print(response.statusCode);
     print(response.body);
 
     if (response.statusCode == 200) {
