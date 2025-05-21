@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'contact_screen.dart';
+
+import 'home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const M10Assignment());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class M10Assignment extends StatelessWidget {
+  const M10Assignment({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Contact List',
-      theme: ThemeData(primarySwatch: Colors.blueGrey),
-      home: const ContactListApp(),
+    return const MaterialApp(
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
